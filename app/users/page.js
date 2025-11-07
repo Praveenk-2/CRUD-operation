@@ -182,7 +182,7 @@ export default function UsersPage() {
               </p>
             </div>
             <Link
-              href="/create-user"
+              href="/"
               className="text-[12px] md:text-sm bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition font-medium shadow-md"
             >
               Add New User
@@ -208,7 +208,7 @@ export default function UsersPage() {
               No users found. Add your first user!
             </p>
             <Link
-              href="/create-user"
+              href="/"
               className="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition"
             >
               Create First User

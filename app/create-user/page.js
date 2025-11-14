@@ -18,19 +18,19 @@ export default function CreateUser() {
   const [error, setError] = useState('');
   const [success, setSuccess] = useState(false);
 
-  // Input change handle pannurathu
+  // Change input handle
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({
       ...prev,
       [name]: value
     }));
-    setError(''); // Error clear pannurathu
+    setError(''); // Clear error
   };
 
-  // Form submit handle pannurathu
+  // Form submit handle
   const handleSubmit = async (e) => {
-    e.preventDefault(); // Page reload prevent pannurathu
+    e.preventDefault(); // Prevent page reload
     setLoading(true);
     setError('');
     
@@ -54,10 +54,10 @@ export default function CreateUser() {
       setSuccess(true);
       console.log('✅ User created:', data);
       
-      // 2 seconds wait panni users page ku redirect pannurathu
+      // 2 seconds wait and redirect
       setTimeout(() => {
         router.push('/users');
-      }, 2000);
+      });
       
     } catch (err) {
       console.error('❌ Error:', err);

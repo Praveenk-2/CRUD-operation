@@ -26,14 +26,14 @@ export async function GET() {
   }
 }
 
-// POST Request - Pudhu user add pannurathu
+// POST Request - Adding new user
 export async function POST(request) {
   try {
-    // Request body la irundhu data extract pannurathu
+    // Extract data from request body
     const body = await request.json();
     const { name, email, number } = body;
     
-    // Validation - Ella fields-um irukkaa check pannurathu
+    // Validation - Check all fields
     if (!name || !email || !number) {
       return NextResponse.json(
         { error: 'All fields are required' },
@@ -41,7 +41,7 @@ export async function POST(request) {
       );
     }
     
-    // Email format validate pannurathu
+    // Email format validate
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
       return NextResponse.json(
@@ -50,7 +50,7 @@ export async function POST(request) {
       );
     }
     
-    // Phone number validate pannurathu (10 digits)
+    // Phone number validate (10 digits)
     if (number.length < 10) {
       return NextResponse.json(
         { error: 'Phone number must be at least 10 digits' },
@@ -58,8 +58,8 @@ export async function POST(request) {
       );
     }
     
-    // Database la insert pannurathu
-    // ? → Prepared statement (SQL injection prevent pannum)
+    // Database insert
+    // ? → Prepared statement (prevents SQL injection)
     const [result] = await pool.query(
       'INSERT INTO users (name, email, number) VALUES (?, ?, ?)',
       [name, email, number]
@@ -81,7 +81,7 @@ export async function POST(request) {
   } catch (error) {
     console.error('❌ Error creating user:', error);
     
-    // Duplicate email error check pannurathu
+    // Check duplicate email error
     if (error.code === 'ER_DUP_ENTRY') {
       return NextResponse.json(
         { error: 'Email already exists' },
